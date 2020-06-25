@@ -1,0 +1,33 @@
+{
+  "name": "drone-nav-service-api",
+  "version": "0.1.0",
+  "description": "REST API for Drone Navigation Service for Atlas Corp",
+  "main": "index.js",
+  "repository": "https://github.com/shreyasp/drone-nav-service-api",
+  "author": "Shreyas Patil",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.23.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.6",
+    "@types/helmet": "^0.0.47",
+    "@types/node": "^14.0.14",
+    "@types/webpack": "^4.41.18",
+    "@types/webpack-node-externals": "^1.7.1",
+    "ts-loader": "^7.0.5",
+    "typescript": "^3.9.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "scripts": {
+    "start": "node dist/index",
+    "webpack-dev": "webpack --config webpack.config.development.ts"
+  }
+}
