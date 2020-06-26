@@ -8,6 +8,7 @@ import helmet from "helmet";
 import { locationRouter } from "./routes/drone.location.routes";
 import { pingRouter } from "./routes/ping.service.routes";
 import { errorHandler, genLogger } from "./middlewares/log.middleware";
+import { mapper } from "./middlewares/response.mapping.middleware";
 
 dotenv.config();
 
@@ -40,6 +41,7 @@ app.use("/v1/ping", pingRouter);
 /**
  * Middleware Invocation
  */
+app.use(mapper);
 app.use(genLogger);
 app.use(errorHandler);
 

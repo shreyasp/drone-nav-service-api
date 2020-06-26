@@ -8,6 +8,7 @@
     "license": "MIT",
     "dependencies": {
         "@cloudnative/health-connect": "^2.1.0",
+        "@types/lodash": "^4.14.157",
         "cors": "^2.8.5",
         "dotenv": "^8.2.0",
         "eslint-config-airbnb-base": "^14.2.0",
@@ -15,7 +16,8 @@
         "express-jwt": "^5.3.3",
         "helmet": "^3.23.2",
         "jose": "^1.27.1",
-        "jwks-rsa": "^1.8.1"
+        "jwks-rsa": "^1.8.1",
+        "lodash": "^4.17.15"
     },
     "devDependencies": {
         "@types/cors": "^2.8.6",
