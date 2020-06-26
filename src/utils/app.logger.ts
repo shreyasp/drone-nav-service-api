@@ -36,7 +36,7 @@ const LOGGER_CONFIG_DEV: LoggerOptions = {
  * logger Definition
  */
 const config =
-    process.env.NODE_ENV === "development"
+    process.env.APP_DEV_ENV === "development"
         ? LOGGER_CONFIG_DEV
         : LOGGER_CONFIG_PROD;
 const logger = createLogger(config);

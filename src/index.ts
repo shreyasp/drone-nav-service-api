@@ -7,6 +7,7 @@ import cors from "cors";
 import helmet from "helmet";
 import { locationRouter } from "./routes/drone.location.routes";
 import { pingRouter } from "./routes/ping.service.routes";
+import { errorHandler, genLogger } from "./middlewares/log.middleware";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ if (!process.env.PORT) {
 
 const PORT: number = parseInt(process.env.PORT as string, 10);
 const app = express();
+const rTracer = require("cls-rtracer");
 
 /**
  * App Configuration
@@ -26,12 +28,20 @@ const app = express();
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(rTracer.expressMiddleware());
 
 /**
  * Application Routes
  */
+
 app.use("/v1/locations", locationRouter);
 app.use("/v1/ping", pingRouter);
+
+/**
+ * Middleware Invocation
+ */
+app.use(genLogger);
+app.use(errorHandler);
 
 /**
  * Health Checker Initialization and Endpoints
