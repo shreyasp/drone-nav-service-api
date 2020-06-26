@@ -1,7 +1,7 @@
 /**
  * Required External Node Modules
  */
-import express, { Request, Response, response } from "express";
+import express, { Request, Response } from "express";
 
 /**
  * Configuration
