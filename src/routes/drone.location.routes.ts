@@ -1,12 +1,14 @@
 /**
  * Required External Node Modules
  */
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response, NextFunction, Router } from "express";
 import { getLocation } from "../services/drone.location.services";
 import { DroneParameters } from "../models/drone.location.interface";
 import dotenv from "dotenv";
 import { HTTPException } from "../models/utils/http.exception";
 import { GenericLogger } from "../models/utils/gen.logger";
+import { checkJwt } from "../middlewares/auth.middleware";
+import { errorHandler } from "../middlewares/log.middleware";
 
 /**
  * Configuration
@@ -23,9 +25,10 @@ const locationRouter = express.Router();
  */
 
 // Get Location based on drone parameters
-
 locationRouter.get(
     "/",
+    checkJwt,
+    errorHandler,
     async (req: Request, resp: Response, next: NextFunction) => {
         const droneParams: DroneParameters = {
             x: parseFloat(req.body.x as string),
