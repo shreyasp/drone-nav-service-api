@@ -2,7 +2,7 @@
  * Required External Node Modules
  */
 import { HTTPException } from "../models/utils/http.exception";
-import { Request, Response, NextFunction, response, json } from "express";
+import { Request, Response, NextFunction } from "express";
 import rTracer from "cls-rtracer";
 import { appLogger } from "../utils/app.logger";
 import { GenericLogger } from "../models/utils/gen.logger";
