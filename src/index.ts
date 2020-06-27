@@ -6,8 +6,9 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { locationRouter } from "./routes/drone.location.routes";
-import { pingRouter } from "./routes/ping.service.routes";
-import { errorHandler, genLogger } from "./middlewares/log.middleware";
+import { pingRouter } from "./services/ping.service.routes";
+import { genLogger } from "./middlewares/log.middleware";
+import { errorHandler } from "./middlewares/error.handler.middleware";
 import { mapper } from "./middlewares/response.mapping.middleware";
 
 dotenv.config();

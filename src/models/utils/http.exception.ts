@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 class HTTPException extends Error {
     statusCode: number;
     message: string;
@@ -8,7 +10,7 @@ class HTTPException extends Error {
 
         this.statusCode = statusCode;
         this.message = message;
-        this.error = error || null;
+        this.error = _.cloneDeep(error) || null;
     }
 }
 
