@@ -7,7 +7,10 @@ import { DroneParameters } from "../models/drone.params.interface";
 import dotenv from "dotenv";
 import { HTTPException } from "../models/utils/http.exception";
 import { checkJwt } from "../middlewares/auth.middleware";
-import { errorHandler } from "../middlewares/log.middleware";
+import {
+    paramValidationRules,
+    paramValidate,
+} from "../middlewares/validators/request.body.validation";
 
 /**
  * Configuration
@@ -27,7 +30,8 @@ const locationRouter = express.Router();
 locationRouter.get(
     "/",
     checkJwt,
-    errorHandler,
+    paramValidationRules(),
+    paramValidate,
     async (req: Request, resp: Response, next: NextFunction) => {
         const droneParams: DroneParameters = {
             x: parseFloat(req.body.x as string),
@@ -42,8 +46,10 @@ locationRouter.get(
                 : parseInt(process.env.SECTOR_ID as string, 10);
 
         try {
-            const loc: String = await getLocation(droneParams, sectorId);
-            next({ loc });
+            const location: String = await getLocation(droneParams, sectorId);
+            resp.status(200).json({
+                loc: parseFloat(location.toString()),
+            });
         } catch (err) {
             next(new HTTPException(500, "Something went wrong!!", err));
         }
