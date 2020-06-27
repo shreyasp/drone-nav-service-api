@@ -7,6 +7,10 @@ import { DroneParameters } from "../models/drone.params.interface";
 import dotenv from "dotenv";
 import { HTTPException } from "../models/utils/http.exception";
 import { checkJwt } from "../middlewares/auth.middleware";
+import {
+    paramValidationRules,
+    paramValidate,
+} from "../middlewares/validators/request.body.validation";
 
 /**
  * Configuration
@@ -26,6 +30,8 @@ const locationRouter = express.Router();
 locationRouter.get(
     "/",
     checkJwt,
+    paramValidationRules(),
+    paramValidate,
     async (req: Request, resp: Response, next: NextFunction) => {
         const droneParams: DroneParameters = {
             x: parseFloat(req.body.x as string),
