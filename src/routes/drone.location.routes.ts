@@ -11,6 +11,7 @@ import {
     paramValidationRules,
     paramValidate,
 } from "../middlewares/validators/request.body.validation";
+import { unauthHandler } from "../middlewares/error.handler.middleware";
 
 /**
  * Configuration
@@ -30,6 +31,7 @@ const locationRouter = express.Router();
 locationRouter.get(
     "/",
     checkJwt,
+    unauthHandler,
     paramValidationRules(),
     paramValidate,
     async (req: Request, resp: Response, next: NextFunction) => {

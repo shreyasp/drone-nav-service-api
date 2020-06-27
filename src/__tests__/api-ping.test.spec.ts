@@ -8,14 +8,6 @@ describe("GET /v1/ping", () => {
             .set("Accept", "application/json");
 
         expect(res.status).toBe(200);
-        done();
-    });
-
-    it("Test for the response", async (done) => {
-        const res = await request(app)
-            .get("/v1/ping")
-            .set("Accept", "application/json");
-
         expect(res.body.message).toBe("pong to world");
         done();
     });

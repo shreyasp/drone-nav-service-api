@@ -6,6 +6,7 @@ import { Request, Response, NextFunction } from "express";
 import rTracer from "cls-rtracer";
 import { appLogger } from "../utils/app.logger";
 import _ from "lodash";
+import { UnauthorizedError } from "express-jwt";
 
 /**
  * Error Handling Middleware for all the errors except 404
@@ -40,4 +41,32 @@ const errorHandler = (
     });
 };
 
-export { errorHandler };
+/**
+ * Unauthorized Token Handler
+ */
+const unauthHandler = (
+    error: UnauthorizedError,
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const requestId = rTracer.id();
+    const status = error.status;
+    const message = error.message;
+
+    appLogger.log({
+        message,
+        level: "error",
+        meta: JSON.stringify({
+            requestId,
+            error,
+            status,
+        }),
+    });
+    res.status(status).json({
+        message,
+        error,
+    });
+};
+
+export { errorHandler, unauthHandler };
