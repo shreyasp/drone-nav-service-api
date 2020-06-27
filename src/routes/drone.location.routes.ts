@@ -4,7 +4,6 @@
 import express, { Request, Response, NextFunction, Router } from "express";
 import { getLocation } from "../services/drone.location.services";
 import { DroneParameters } from "../models/drone.params.interface";
-import { DroneLocation } from "../models/drone.location.result";
 import dotenv from "dotenv";
 import { HTTPException } from "../models/utils/http.exception";
 import { checkJwt } from "../middlewares/auth.middleware";
@@ -42,13 +41,11 @@ locationRouter.get(
 
         try {
             const location: String = await getLocation(droneParams, sectorId);
-            const dLoc: DroneLocation = {
+            resp.status(200).json({
                 loc: parseFloat(location.toString()),
-            };
-            next(dLoc);
+            });
         } catch (err) {
-            resp.status(500).json({ error: err.stack });
-            // next(new HTTPException(500, "Something went wrong!!", err.stack));
+            next(new HTTPException(500, "Something went wrong!!", err.stack));
         }
     }
 );

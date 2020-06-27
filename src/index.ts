@@ -9,7 +9,6 @@ import { locationRouter } from "./routes/drone.location.routes";
 import { pingRouter } from "./services/ping.service.routes";
 import { genLogger } from "./middlewares/log.middleware";
 import { errorHandler } from "./middlewares/error.handler.middleware";
-import { mapper } from "./middlewares/response.mapping.middleware";
 
 dotenv.config();
 
@@ -42,9 +41,8 @@ app.use("/v1/ping", pingRouter);
 /**
  * Middleware Invocation
  */
-app.use(mapper);
-app.use(genLogger);
 app.use(errorHandler);
+app.use(genLogger);
 
 /**
  * Health Checker Initialization and Endpoints
