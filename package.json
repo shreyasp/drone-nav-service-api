@@ -9,6 +9,7 @@
     "dependencies": {
         "@cloudnative/health-connect": "^2.1.0",
         "@types/lodash": "^4.14.157",
+        "axios": "^0.19.2",
         "cors": "^2.8.5",
         "dotenv": "^8.2.0",
         "eslint-config-airbnb-base": "^14.2.0",
@@ -16,17 +17,23 @@
         "express-jwt": "^5.3.3",
         "express-validator": "^6.6.0",
         "helmet": "^3.23.2",
+        "jest": "^26.1.0",
         "jose": "^1.27.1",
         "jwks-rsa": "^1.8.1",
-        "lodash": "^4.17.15"
+        "lodash": "^4.17.15",
+        "supertest": "^4.0.2",
+        "ts-jest": "^26.1.1"
     },
     "devDependencies": {
+        "@types/axios": "^0.14.0",
         "@types/cors": "^2.8.6",
         "@types/dotenv": "^8.2.0",
         "@types/express": "^4.17.6",
         "@types/express-jwt": "^0.0.42",
         "@types/helmet": "^0.0.47",
+        "@types/jest": "^26.0.3",
         "@types/node": "^14.0.14",
+        "@types/supertest": "^2.0.9",
         "@types/webpack": "^4.41.18",
         "@types/webpack-node-externals": "^1.7.1",
         "@types/winston": "^2.4.4",
@@ -44,8 +51,9 @@
         "winston": "^3.3.3"
     },
     "scripts": {
-        "start": "node dist/index",
-        "webpack-dev": "webpack --config webpack.config.development.ts"
+        "start": "node dist/server",
+        "webpack-dev": "webpack --config webpack.config.development.ts",
+        "test": "jest --detectOpenHandles"
     },
     "husky": {
         "hooks": {
