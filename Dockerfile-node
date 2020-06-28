@@ -18,3 +18,5 @@ COPY dist/server.js ./src/dist/
 EXPOSE 3535
 
 CMD ["node", "./src/dist/server"]
+
+STOPSIGNAL SIGTERM
