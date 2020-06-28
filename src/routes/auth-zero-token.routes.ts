@@ -1,9 +1,19 @@
+/**
+ * Required External Node Modules
+ */
 import express, { Request, Response, NextFunction } from "express";
 import { getToken } from "../services/auth-zero.token.service";
 import { HTTPException } from "../models/utils/http.exception";
 
+/**
+ * Router Definition
+ */
 const authTokenRouter = express.Router();
 
+/**
+ * Controller Definitions
+ */
+// Get Access Token
 authTokenRouter.get(
     "/",
     async (req: Request, resp: Response, next: NextFunction) => {

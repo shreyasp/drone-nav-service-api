@@ -1,3 +1,7 @@
+/**
+ * Model definition for Logger
+ */
+
 class GenericLogger {
     level: string;
     statusCode: number;

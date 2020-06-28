@@ -1,8 +1,20 @@
+/**
+ * Access Token Service Layer
+ */
+/**
+ * Required External Node Modules
+ */
 import axios from "axios";
 import * as dotenv from "dotenv";
 
+/**
+ * Configuration
+ */
 dotenv.config();
 
+/**
+ * Service Methods
+ */
 const getToken = async (): Promise<any> => {
     const config = {
         headers: {

@@ -1,5 +1,9 @@
 /**
- * Drone location Model Interfaces
+ * Drone location Service Layer
+ */
+
+/**
+ * Required External Node Modules
  */
 import { DroneParameters } from "../models/drone.params.interface";
 import dotenv from "dotenv";
@@ -8,10 +12,6 @@ import dotenv from "dotenv";
  * Configuration
  */
 dotenv.config();
-
-/**
- * In-Memory Store
- */
 
 /**
  * Service Methods

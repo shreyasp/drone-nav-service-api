@@ -4,10 +4,6 @@
 import express, { Request, Response } from "express";
 
 /**
- * Configuration
- */
-
-/**
  * Router Definition
  */
 const pingRouter = express.Router();

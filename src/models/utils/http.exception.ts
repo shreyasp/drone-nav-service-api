@@ -1,5 +1,6 @@
-import _ from "lodash";
-
+/**
+ * Model definition for Exception Middleware
+ */
 class HTTPException extends Error {
     statusCode: number;
     message: string;

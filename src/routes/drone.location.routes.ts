@@ -42,6 +42,10 @@ locationRouter.get(
             v: parseFloat(req.body.vel as string),
         };
 
+        /**
+         * If we want to deploy location service as a global (one-service-for-all-sector)
+         * then sectorId should be passed in the request body
+         */
         let sectorId: number =
             process.env.GLOBAL_SERVICE === "true"
                 ? parseInt(req.body.sectorId as string, 10)

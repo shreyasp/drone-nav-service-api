@@ -5,10 +5,6 @@ import express, { Request, Response } from "express";
 import { getPing } from "../services/ping.service";
 
 /**
- * Configuration
- */
-
-/**
  * Router Definition
  */
 const pingRouter = express.Router();

@@ -1,3 +1,6 @@
+/**
+ * Location Service Request Interface
+ */
 export interface DroneParameters {
     x: number;
     y: number;
