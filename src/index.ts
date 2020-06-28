@@ -8,6 +8,7 @@ import { locationRouter } from "./routes/drone.location.routes";
 import { pingRouter } from "./routes/ping.routes";
 import { genLogger } from "./middlewares/log.middleware";
 import { errorHandler } from "./middlewares/error.handler.middleware";
+import { authTokenRouter } from "./routes/auth-zero-token.routes";
 
 const app = express();
 const rTracer = require("cls-rtracer");
@@ -25,6 +26,7 @@ app.use(rTracer.expressMiddleware());
  */
 app.use("/v1/locations", locationRouter);
 app.use("/v1/ping", pingRouter);
+app.use("/tokens", authTokenRouter);
 
 /**
  * Middleware Invocation

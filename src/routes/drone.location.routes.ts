@@ -1,7 +1,7 @@
 /**
  * Required External Node Modules
  */
-import express, { Request, Response, NextFunction, Router } from "express";
+import express, { Request, Response, NextFunction } from "express";
 import { getLocation } from "../services/drone.location.services";
 import { DroneParameters } from "../models/drone.params.interface";
 import dotenv from "dotenv";
