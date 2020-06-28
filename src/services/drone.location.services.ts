@@ -19,7 +19,7 @@ dotenv.config();
 const getLocation = async (
     droneParams: DroneParameters,
     sectorId: number
-): Promise<String> => {
+): Promise<any> => {
     const precision: number = parseInt(process.env.PRECISION as string, 10);
     const location: number =
         droneParams.x * sectorId +
@@ -27,7 +27,8 @@ const getLocation = async (
         droneParams.z * sectorId +
         droneParams.v;
 
-    return Number(location).toPrecision(precision);
+    const loc = Number(location).toPrecision(precision);
+    return { loc: parseFloat(loc) };
 };
 
 export { getLocation };

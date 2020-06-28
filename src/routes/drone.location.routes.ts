@@ -48,10 +48,8 @@ locationRouter.get(
                 : parseInt(process.env.SECTOR_ID as string, 10);
 
         try {
-            const location: String = await getLocation(droneParams, sectorId);
-            resp.status(200).json({
-                loc: parseFloat(location.toString()),
-            });
+            const out: any = await getLocation(droneParams, sectorId);
+            resp.status(200).json(out);
         } catch (err) {
             next(new HTTPException(500, "Something went wrong!!", err));
         }

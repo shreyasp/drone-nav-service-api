@@ -17,11 +17,9 @@ const pingRouter = express.Router();
  */
 
 // Get a pong from the server
-pingRouter.get("/", (req: Request, res: Response) => {
-    const name = req.query.name ? req.query.name : "world";
-    res.status(200).json({
-        message: `pong to ${name}`,
-    });
-});
+const getPing = async (name: string): Promise<any> => {
+    const message = `pong to ${name ? name : "world"}`;
+    return { message };
+};
 
-export { pingRouter };
+export { getPing };
