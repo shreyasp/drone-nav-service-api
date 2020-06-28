@@ -55,6 +55,7 @@
     "scripts": {
         "start": "node dist/server",
         "build:dev": "webpack --config webpack.config.development.js --watch",
+        "build:nowatch": "webpack --config webpack.config.development.js",
         "test": "jest"
     },
     "husky": {
