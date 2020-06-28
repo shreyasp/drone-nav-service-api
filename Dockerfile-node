@@ -1,0 +1,20 @@
+FROM node:12.18.1-alpine3.12
+
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+RUN mkdir -p /home/node/app/src/dist
+
+WORKDIR /home/node/app
+
+COPY package.json ./
+COPY .env ./
+COPY yarn.lock ./
+
+USER node
+
+RUN yarn install
+
+COPY dist/server.js ./src/dist/
+
+EXPOSE 3535
+
+CMD ["node", "./src/dist/server"]

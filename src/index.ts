@@ -5,7 +5,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { locationRouter } from "./routes/drone.location.routes";
-import { pingRouter } from "./services/ping.service.routes";
+import { pingRouter } from "./routes/ping.routes";
 import { genLogger } from "./middlewares/log.middleware";
 import { errorHandler } from "./middlewares/error.handler.middleware";
 
