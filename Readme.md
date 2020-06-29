@@ -100,6 +100,18 @@ $ docker-compose up -d
     {
         "loc":1389.57
     }
+    
+# Using the service as global
+# Request:
+    curl --location --request GET 'http://localhost:3535/v1/locations' \
+    --header 'Authorization: Bearer <access-token>' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{ "x": "123.12", "y": "456.56", "z": "789.89", "vel": "20", "sectorId": "1" }'
+
+    # Response:
+    {
+        "loc":1389.57
+    }
 ```
 
 -   To run unit tests,
