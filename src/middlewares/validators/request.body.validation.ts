@@ -4,17 +4,26 @@
 import { body, validationResult } from "express-validator";
 import { Request, Response, NextFunction } from "express";
 import { HTTPException } from "../../models/utils/http.exception";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 /**
  * Validation Rules
  */
 const paramValidationRules = () => {
-    return [
+    let validationRules = [
         body("x").isString(),
         body("y").isString(),
         body("z").isString(),
         body("vel").isString(),
     ];
+
+    if (process.env.GLOBAL_SERVICE === "true") {
+        validationRules.push(body("sectorId").isString());
+    }
+
+    return validationRules;
 };
 
 /**
