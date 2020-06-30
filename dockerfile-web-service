@@ -1,22 +1,26 @@
 FROM node:12.18.1-alpine3.12
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-RUN mkdir -p /home/node/app/src/dist
+RUN mkdir -p /home/node/app/src/
 
 WORKDIR /home/node/app
 
 COPY package.json ./
+COPY tsconfig.json ./
 COPY .env ./
 COPY yarn.lock ./
+COPY webpack.common.config.js ./
+COPY webpack.config.development.js ./
+COPY src/ ./src
 
 USER node
 
 RUN yarn install
 
-COPY dist/server.js ./src/dist/
+RUN yarn build:nowatch
 
 EXPOSE 3535
 
-CMD ["node", "./src/dist/server"]
+CMD ["node", "./dist/server"]
 
 STOPSIGNAL SIGTERM
