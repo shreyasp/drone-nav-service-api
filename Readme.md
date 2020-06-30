@@ -68,9 +68,7 @@ $ yarn start
 -   Running the application as Docker
 
 ```
-# Build the application
-$ yarn build:nowatch
-
+# Run the docker compose
 $ docker-compose up -d
 
 # Application should be running at http://localhost:9000/v1/ping
@@ -100,7 +98,7 @@ $ docker-compose up -d
     {
         "loc":1389.57
     }
-    
+
 # Using the service as global
 # Request:
     curl --location --request GET 'http://localhost:3535/v1/locations' \
