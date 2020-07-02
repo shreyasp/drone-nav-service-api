@@ -1,7 +1,7 @@
 /**
  * Required External Modules
  */
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { locationRouter } from "./routes/drone.location.routes";
@@ -9,6 +9,7 @@ import { pingRouter } from "./routes/ping.routes";
 import { genLogger } from "./middlewares/log.middleware";
 import { errorHandler } from "./middlewares/error.handler.middleware";
 import { authTokenRouter } from "./routes/auth-zero-token.routes";
+import { swaggerRouter } from "./routes/swagger.routes";
 
 const app = express();
 const rTracer = require("cls-rtracer");
@@ -24,6 +25,12 @@ app.use(rTracer.expressMiddleware());
 /**
  * Application Routes
  */
+
+// Do route to home of the application
+app.get("/", (req: Request, res: Response, next: NextFunction) =>
+    res.redirect("/v1/api-docs")
+);
+app.use("/v1/api-docs", swaggerRouter);
 app.use("/v1/locations", locationRouter);
 app.use("/v1/ping", pingRouter);
 app.use("/tokens", authTokenRouter);

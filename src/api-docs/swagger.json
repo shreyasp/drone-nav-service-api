@@ -1,0 +1,154 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "description": "Documentation for API for Drone Navigation Services",
+        "version": "1.0.0",
+        "title": "API Docs - Atlas Corp Drone Navigation Services",
+        "contact": {
+            "email": "mail@shreyasp.dev"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://choosealicense.com/licenses/mit/"
+        }
+    },
+    "host": "http://localhost:3535/v1",
+    "servers": [
+        {
+            "url": "http://localhost:3535/v1",
+            "description": "Local Development Server"
+        }
+    ],
+    "basePath": "v1",
+    "paths": {
+        "/ping": {
+            "get": {
+                "summary": "Returns the server ping",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PingResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/locations": {
+            "post": {
+                "summary": "Returns the location based Drone co-ordinates, velocity and sector id",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DroneParameters"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "returns JSON object",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DroneLocation200"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "returns JSON Object",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DroneLocation401"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "PingResponse": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "message": "pong to the world"
+                }
+            },
+            "DroneParameters": {
+                "type": "object",
+                "required": ["x", "y", "z", "v"],
+                "properties": {
+                    "x": {
+                        "type": "string"
+                    },
+                    "y": {
+                        "type": "string"
+                    },
+                    "z": {
+                        "type": "string"
+                    },
+                    "v": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "x": "10",
+                    "y": "10",
+                    "z": "10",
+                    "v": "10"
+                }
+            },
+            "DroneLocation401": {
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "number"
+                    }
+                },
+                "example": {
+                    "message": "Unauthorized Access",
+                    "status": 401
+                }
+            },
+            "DroneLocation200": {
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "type": "number"
+                    }
+                },
+                "example": {
+                    "loc": 40
+                }
+            }
+        }
+    }
+}

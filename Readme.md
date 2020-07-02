@@ -89,7 +89,7 @@ $ docker-compose up -d
 
 # Use the access token in the Authorization header below to make API call
     # Request:
-    curl --location --request GET 'http://localhost:3535/v1/locations' \
+    curl --location --request POST 'http://localhost:3535/v1/locations' \
     --header 'Authorization: Bearer <access-token>' \
     --header 'Content-Type: application/json' \
     --data-raw '{ "x": "123.12", "y": "456.56", "z": "789.89", "vel": "20" }'
@@ -101,7 +101,7 @@ $ docker-compose up -d
 
 # Using the service as global
 # Request:
-    curl --location --request GET 'http://localhost:3535/v1/locations' \
+    curl --location --request POST 'http://localhost:3535/v1/locations' \
     --header 'Authorization: Bearer <access-token>' \
     --header 'Content-Type: application/json' \
     --data-raw '{ "x": "123.12", "y": "456.56", "z": "789.89", "vel": "20", "sectorId": "1" }'

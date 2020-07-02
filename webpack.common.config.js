@@ -1,4 +1,5 @@
 const path = require("path");
+const { json } = require("express");
 
 module.exports = {
     target: "node",
@@ -8,6 +9,11 @@ module.exports = {
                 test: /\.ts?$/,
                 loader: "ts-loader",
                 exclude: "/node_modules/",
+            },
+            {
+                test: /\.yaml/,
+                type: "json",
+                use: "yaml-loader",
             },
         ],
     },

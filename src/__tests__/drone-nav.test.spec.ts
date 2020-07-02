@@ -33,7 +33,7 @@ beforeAll(async (done) => {
 describe("GET /v1/locations", () => {
     it("Unauthorized Access", async (done) => {
         const res = await request(app)
-            .get("/v1/locations")
+            .post("/v1/locations")
             .set("Accept", "application/json");
 
         expect(res.status).toBe(401);
@@ -52,7 +52,7 @@ describe("GET /v1/locations", () => {
         };
 
         const res = await request(app)
-            .get("/v1/locations")
+            .post("/v1/locations")
             .set("Accept", "application/json")
             .set("Authorization", invalidToken)
             .send(reqBody);
@@ -70,7 +70,7 @@ describe("GET /v1/locations", () => {
         };
 
         const res = await request(app)
-            .get("/v1/locations")
+            .post("/v1/locations")
             .set("Accept", "application/json")
             .set("Authorization", `${tokenType} ${accessToken}`)
             .send(reqBody);
@@ -88,7 +88,7 @@ describe("GET /v1/locations", () => {
         };
 
         const res = await request(app)
-            .get("/v1/locations")
+            .post("/v1/locations")
             .set("Accept", "application/json")
             .set("Authorization", `${tokenType} ${accessToken}`)
             .send(reqBody);

@@ -28,7 +28,7 @@ const locationRouter = express.Router();
  */
 
 // Get Location based on drone parameters
-locationRouter.get(
+locationRouter.post(
     "/",
     checkJwt,
     unauthHandler,
