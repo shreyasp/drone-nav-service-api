@@ -9,9 +9,9 @@ services:
         container_name: atlas_dns_container
         restart: unless-stopped
         ports:
-            - "9000:3535"
+            - "3535:3535"
         healthcheck:
-            test: CMD ["curl", "--fail", "-s", "http://localhost:9000/health"] || exit 1
+            test: CMD ["curl", "--fail", "-s", "http://localhost:3535/health"] || exit 1
             interval: 1m30s
             timeout: 10s
             retries: 3
