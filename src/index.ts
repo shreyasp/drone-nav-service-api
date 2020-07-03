@@ -33,7 +33,7 @@ app.get("/", (req: Request, res: Response, next: NextFunction) =>
 app.use("/v1/api-docs", swaggerRouter);
 app.use("/v1/locations", locationRouter);
 app.use("/v1/ping", pingRouter);
-app.use("/tokens", authTokenRouter);
+app.use("/v1/tokens", authTokenRouter);
 
 /**
  * Middleware Invocation

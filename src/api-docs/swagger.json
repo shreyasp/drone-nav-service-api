@@ -21,6 +21,22 @@
     ],
     "basePath": "v1",
     "paths": {
+        "/tokens": {
+            "get": {
+                "summary": "Returns the access token for Authorization",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/ping": {
             "get": {
                 "summary": "Returns the server ping",
@@ -41,14 +57,9 @@
         "/locations": {
             "post": {
                 "summary": "Returns the location based Drone co-ordinates, velocity and sector id",
-                "parameters": [
+                "security": [
                     {
-                        "in": "header",
-                        "name": "Authorization",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true
+                        "bearerAuth": []
                     }
                 ],
                 "requestBody": {
@@ -88,6 +99,17 @@
     },
     "components": {
         "schemas": {
+            "TokenResponse": {
+                "type": "object",
+                "properties": {
+                    "accessToken": {
+                        "type": "string"
+                    },
+                    "tokenType": {
+                        "type": "string"
+                    }
+                }
+            },
             "PingResponse": {
                 "type": "object",
                 "properties": {
@@ -112,7 +134,7 @@
                     "z": {
                         "type": "string"
                     },
-                    "v": {
+                    "vel": {
                         "type": "string"
                     }
                 },
@@ -120,7 +142,7 @@
                     "x": "10",
                     "y": "10",
                     "z": "10",
-                    "v": "10"
+                    "vel": "10"
                 }
             },
             "DroneLocation401": {
@@ -148,6 +170,13 @@
                 "example": {
                     "loc": 40
                 }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }
